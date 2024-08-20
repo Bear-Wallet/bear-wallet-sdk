@@ -1,8 +1,10 @@
 import axios from "axios";
 
+const BACKEND_URL = `https://node-service-isah.onrender.com`;
+
 export async function getData({ sessionId }: { sessionId: string }) {
   const res = await axios.get(
-    `https://node-service-isah.onrender.com/sdk/get-data?sessionId=${sessionId}`
+    `${BACKEND_URL}/sdk/get-data?sessionId=${sessionId}`
   );
 
   return res.data as {
@@ -21,14 +23,11 @@ export async function storeReq({
   data: string;
   type: string;
 }) {
-  const res = await axios.post(
-    `https://node-service-isah.onrender.com/sdk/store-req`,
-    {
-      sessionId,
-      data,
-      type,
-    }
-  );
+  const res = await axios.post(`${BACKEND_URL}/sdk/store-req`, {
+    sessionId,
+    data,
+    type,
+  });
 
   return res.data as {
     sessionId: string;

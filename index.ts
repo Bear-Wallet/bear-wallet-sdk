@@ -10,10 +10,8 @@ export class WalletSDK {
    * @param {string?} miniAppUrl - Optional URL of the mini app to connect to
    */
   constructor(miniAppUrl?: string) {
-    // this.miniAppUrl = miniAppUrl ?? "https://t.me/bear_waller_test_bot/wallet";
     this.miniAppUrl =
       miniAppUrl ?? `tg://resolve?domain=bear_waller_test_bot&appname=wallet`;
-    // this.miniAppUrl = miniAppUrl ?? "http://localhost:5173";
   }
 
   private static generateSessionId() {
