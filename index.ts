@@ -4,9 +4,14 @@ import { getData } from "./helpers/api";
 export class WalletSDK {
   public readonly miniAppUrl: string;
 
-  constructor() {
-    // this.miniAppUrl = "https://t.me/bear_waller_test_bot/wallet";
-    this.miniAppUrl = "http://localhost:5173";
+  /**
+   * Represents the wallet.
+   * @constructor
+   * @param {string?} miniAppUrl - Optional URL of the mini app to connect to
+   */
+  constructor(miniAppUrl?: string) {
+    this.miniAppUrl = miniAppUrl ?? "https://t.me/bear_waller_test_bot/wallet";
+    // this.miniAppUrl = miniAppUrl ?? "http://localhost:5173";
   }
 
   private static generateSessionId() {

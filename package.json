@@ -1,6 +1,6 @@
 {
-  "name": "bear-waller-sdk",
-  "version": "1.0.0",
+  "name": "@bear-wallet/sdk",
+  "version": "1.0.1",
   "main": "index.js",
   "types": "dist/index.d.ts",
   "scripts": {
