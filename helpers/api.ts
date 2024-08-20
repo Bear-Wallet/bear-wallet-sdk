@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const BACKEND_URL = `https://node-service-isah.onrender.com`;
+// const BACKEND_URL = `https://node-service-isah.onrender.com`;
+const BACKEND_URL = `https://node-service1-1.onrender.com`;
 
 export async function getData({ sessionId }: { sessionId: string }) {
   const res = await axios.get(
