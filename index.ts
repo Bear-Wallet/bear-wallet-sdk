@@ -10,7 +10,9 @@ export class WalletSDK {
    * @param {string?} miniAppUrl - Optional URL of the mini app to connect to
    */
   constructor(miniAppUrl?: string) {
-    this.miniAppUrl = miniAppUrl ?? "https://t.me/bear_waller_test_bot/wallet";
+    // this.miniAppUrl = miniAppUrl ?? "https://t.me/bear_waller_test_bot/wallet";
+    this.miniAppUrl =
+      miniAppUrl ?? `tg://resolve?domain=bear_waller_test_bot&appname=wallet`;
     // this.miniAppUrl = miniAppUrl ?? "http://localhost:5173";
   }
 
@@ -20,7 +22,7 @@ export class WalletSDK {
 
   private openMiniApp(data: { type: string; sessionId: string; data: any }) {
     window.open(
-      `${this.miniAppUrl}?startapp=${encodeURIComponent(JSON.stringify(data))}`
+      `${this.miniAppUrl}&startapp=${encodeURIComponent(JSON.stringify(data))}`
     );
   }
 
