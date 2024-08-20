@@ -22,7 +22,7 @@ export class WalletSDK {
 
   private openMiniApp(data: { type: string; sessionId: string; data: any }) {
     window.open(
-      `${this.miniAppUrl}&startapp=${encodeURIComponent(JSON.stringify(data))}`
+      `${this.miniAppUrl}&startapp=${encodeURIComponent(btoa(JSON.stringify(data)))}`
     );
   }
 
