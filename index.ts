@@ -21,10 +21,7 @@ export class WalletSDK {
   }
 
   private openMiniApp(data: { type: string; sessionId: string; data: any }) {
-    window.open(
-      `${this.miniAppUrl}&startapp=${data.sessionId})
-      )}`
-    );
+    window.open(`${this.miniAppUrl}&startapp=${data.sessionId}`);
   }
 
   /**
