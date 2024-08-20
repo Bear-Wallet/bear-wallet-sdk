@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { getData } from "./helpers/api";
+import { getData, storeReq } from "./helpers/api";
 
 export class WalletSDK {
   public readonly miniAppUrl: string;
@@ -22,7 +22,8 @@ export class WalletSDK {
 
   private openMiniApp(data: { type: string; sessionId: string; data: any }) {
     window.open(
-      `${this.miniAppUrl}&startapp=${encodeURIComponent(btoa(JSON.stringify(data)))}`
+      `${this.miniAppUrl}&startapp=${data.sessionId})
+      )}`
     );
   }
 
@@ -35,7 +36,7 @@ export class WalletSDK {
    *
    */
   async connect(network: "MAINNET" | "TESTNET"): Promise<string> {
-    return new Promise((resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
       const sessionId = WalletSDK.generateSessionId();
 
       const data = {
@@ -43,6 +44,8 @@ export class WalletSDK {
         sessionId,
         data: network,
       };
+
+      await storeReq(data);
 
       this.openMiniApp(data);
 
@@ -77,7 +80,7 @@ export class WalletSDK {
    *
    */
   async signMessage(message: string): Promise<string> {
-    return new Promise((resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
       const sessionId = WalletSDK.generateSessionId();
 
       const data = {
@@ -86,6 +89,7 @@ export class WalletSDK {
         data: message,
       };
 
+      await storeReq(data);
       this.openMiniApp(data);
 
       // Poll the server for the result
@@ -129,7 +133,7 @@ export class WalletSDK {
     amount: number;
     chainId: number;
   }): Promise<string> {
-    return new Promise((resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
       const sessionId = WalletSDK.generateSessionId();
 
       const data = {
@@ -137,6 +141,11 @@ export class WalletSDK {
         sessionId,
         data: { toAddress, amount, chainId },
       };
+
+      await storeReq({
+        ...data,
+        data: JSON.stringify(data.data),
+      });
 
       this.openMiniApp(data);
 

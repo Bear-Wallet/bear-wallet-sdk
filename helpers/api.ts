@@ -11,3 +11,28 @@ export async function getData({ sessionId }: { sessionId: string }) {
     type: string;
   };
 }
+
+export async function storeReq({
+  sessionId,
+  data,
+  type,
+}: {
+  sessionId: string;
+  data: string;
+  type: string;
+}) {
+  const res = await axios.post(
+    `https://node-service-isah.onrender.com/sdk/store-req`,
+    {
+      sessionId,
+      data,
+      type,
+    }
+  );
+
+  return res.data as {
+    sessionId: string;
+    data: string;
+    type: string;
+  };
+}
